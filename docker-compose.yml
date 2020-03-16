@@ -1,0 +1,28 @@
+version: "3"
+services:
+  plex:
+    image: linuxserver/plex
+    environment:
+      - PUID=${MEDIA_LIBRARY_OWNER_USER_ID}
+      - PGID=${MEDIA_LIBRARY_OWNER_GROUP_ID}
+      - VERSION=docker
+      - UMASK_SET=022
+    ports:
+      - 32400:32400
+      - 32400:32400/udp
+      - 32469:32469
+      - 32469:32469/udp
+      - 5353:5353/udp
+      - 1900:1900/udp
+    volumes:
+      - ${PLEX_LIBRARY_LOCATION}:/config
+      - ${MEDIA_SHOWS_LOCATION}:/shows
+      - ${MEDIA_MOVIES_LOCATION}:/movies
+      - ${MEDIA_PODCASTS_LOCATION}:/podcasts
+      - ${MEDIA_MUSIC_LOCATION}:/music
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
