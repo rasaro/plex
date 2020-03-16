@@ -20,9 +20,3 @@ services:
       - ${MEDIA_MOVIES_LOCATION}:/movies
       - ${MEDIA_PODCASTS_LOCATION}:/podcasts
       - ${MEDIA_MUSIC_LOCATION}:/music
-    deploy:
-      mode: replicated
-      replicas: 1
-      placement:
-        constraints:
-          - node.role == manager
