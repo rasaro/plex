@@ -9,6 +9,8 @@ Configuration for dockerized Plex media server
 
 ## Running
 
+### Environment variables
+
 ```
 cp .env.example .env
 ```
