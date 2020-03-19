@@ -2,12 +2,17 @@ version: "3"
 services:
   plex:
     image: linuxserver/plex
+    devices:
+      - /dev/dri:/dev/dri
     environment:
       - TZ=${PLEX_TIMEZONE}
       - PLEX_CLAIM=${PLEX_CLAIM}
-      - ADVERTISE_IP=https://${PLEX_DOMAIN}
+      - ADVERTISE_IP=https://${PLEX_DOMAIN}:443/
       - PUID=${MEDIA_LIBRARY_OWNER_USER_ID}
       - PGID=${MEDIA_LIBRARY_OWNER_GROUP_ID}
+      - VERSION=docker
+    networks:
+      - traefik
     ports:
       - 32400:32400
       - 32400:32400/udp
@@ -27,3 +32,7 @@ services:
         - traefik.http.routers.plex.tls=true
         - traefik.http.routers.plex.tls.certresolver=letsencrypt
         - traefik.http.services.plex.loadbalancer.server.port=32400
+
+networks:
+  traefik:
+    external: true
