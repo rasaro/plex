@@ -7,15 +7,11 @@ services:
     environment:
       - TZ=${PLEX_TIMEZONE}
       - PLEX_CLAIM=${PLEX_CLAIM}
-      - ADVERTISE_IP=https://${PLEX_DOMAIN}:443/
       - PUID=${MEDIA_LIBRARY_OWNER_USER_ID}
       - PGID=${MEDIA_LIBRARY_OWNER_GROUP_ID}
       - VERSION=docker
     networks:
       - traefik
-    ports:
-      - 32400:32400
-      - 32400:32400/udp
     volumes:
       - ${PLEX_LIBRARY_LOCATION}:/config
       - ${PLEX_MEDIA_LOCATION}:/data
