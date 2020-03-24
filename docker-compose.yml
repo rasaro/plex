@@ -13,8 +13,8 @@ services:
     networks:
       - traefik
     volumes:
-      - ${PLEX_LIBRARY_LOCATION}:/config
-      - ${PLEX_MEDIA_LOCATION}:/data
+      - ${PLEX_LIBRARY_FOLDER}:/config
+      - ${PLEX_MEDIA_FOLDER}:/data
     deploy:
       mode: replicated
       replicas: 1
