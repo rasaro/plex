@@ -2,8 +2,6 @@ version: "3"
 services:
   plex:
     image: linuxserver/plex
-    devices:
-      - /dev/dri:/dev/dri
     environment:
       - TZ=${PLEX_TZ}
       - PLEX_CLAIM=${PLEX_CLAIM}
