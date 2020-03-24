@@ -7,8 +7,8 @@ services:
     environment:
       - TZ=${PLEX_TIMEZONE}
       - PLEX_CLAIM=${PLEX_CLAIM}
-      - PUID=${MEDIA_LIBRARY_OWNER_USER_ID}
-      - PGID=${MEDIA_LIBRARY_OWNER_GROUP_ID}
+      - PUID=${PLEX_MEDIA_LIBRARY_OWNER_USER_ID}
+      - PGID=${PLEX_MEDIA_LIBRARY_OWNER_GROUP_ID}
       - VERSION=docker
     networks:
       - traefik
@@ -23,7 +23,7 @@ services:
           - node.role == manager
       labels:
         - traefik.enable=true
-        - traefik.http.routers.plex.rule=Host(`${PLEX_DOMAIN}`)
+        - traefik.http.routers.plex.rule=Host(`plex.${DOMAIN}`)
         - traefik.http.routers.plex.entryPoints=https
         - traefik.http.routers.plex.tls=true
         - traefik.http.routers.plex.tls.certresolver=letsencrypt
