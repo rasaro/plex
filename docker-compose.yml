@@ -5,7 +5,7 @@ services:
     devices:
       - /dev/dri:/dev/dri
     environment:
-      - TZ=${PLEX_TIMEZONE}
+      - TZ=${PLEX_TZ}
       - PLEX_CLAIM=${PLEX_CLAIM}
       - PUID=${PLEX_MEDIA_LIBRARY_OWNER_USER_ID}
       - PGID=${PLEX_MEDIA_LIBRARY_OWNER_GROUP_ID}
